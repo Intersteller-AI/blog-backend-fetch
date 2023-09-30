@@ -16,9 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", async (req, res, next) => {
-  res.json({
-    message: "server is listening...",
-  });
+  res.send("server is listening...");
 });
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
