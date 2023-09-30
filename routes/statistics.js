@@ -1,6 +1,7 @@
 // @ts-nocheck
 import express from "express";
 import lodash from "lodash";
+import fetch from "node-fetch";
 
 const router = express.Router();
 
@@ -80,8 +81,8 @@ router.get("/blog-search", async (req, res, next) => {
   try {
     const searchTerm = req.query.query;
 
-    const getblogs = await memoizedFetchBlogs()
-    
+    const getblogs = await memoizedFetchBlogs();
+
     const searchedBlogs = lodash.filter(getblogs.blogs, (blog) =>
       lodash.includes(blog.title.toLowerCase(), searchTerm.toLowerCase())
     );

@@ -3,6 +3,10 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import statisticsRouter from "./routes/statistics";
+import {
+  errorResponerHandler,
+  invalidPathHandler,
+} from "./middlewares/errorHandlers";
 
 dotenv.config();
 
@@ -20,6 +24,9 @@ app.get("/", async (req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 app.use("/api", statisticsRouter);
+
+app.use(invalidPathHandler);
+app.use(errorResponerHandler);
 
 const PORT = 8000 || process.env.PORT;
 
